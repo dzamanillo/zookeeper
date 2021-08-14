@@ -4,6 +4,10 @@ const { animals } = require("./data/animals.json");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+app.listen(PORT, () => {
+	console.log(`APi server now on port ${PORT}!`);
+});
+
 function filterByQuery(query, animalsArray) {
 	let personalityTraitsArray = [];
 
@@ -44,6 +48,11 @@ function filterByQuery(query, animalsArray) {
 	return filteredResults;
 }
 
+function findById(id, animalsArray) {
+	const result = animalsArray.filter((animal) => animal.id === id)[0];
+	return result;
+}
+
 app.get("/api/animals", (req, res) => {
 	let results = animals;
 	if (req.query) {
@@ -52,6 +61,11 @@ app.get("/api/animals", (req, res) => {
 	res.json(results);
 });
 
-app.listen(PORT, () => {
-	console.log(`APi server now on port ${PORT}!`);
+app.get("/api/animals/:id", (req, res) => {
+	const result = findById(req.params.id, animals);
+	if (result) {
+		res.json(result);
+	} else {
+		res.send(404);
+	}
 });
