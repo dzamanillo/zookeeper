@@ -110,11 +110,11 @@
       "id": "10"
     },
     {
-      "name": "Dan",
-      "species": "dolphin",
-      "diet": "fish",
+      "name": "Brooke",
+      "species": "Dog",
+      "diet": "carnivore",
       "personalityTraits": [
-        "fun"
+        "loving"
       ],
       "id": "11"
     }
